@@ -1,0 +1,2 @@
+Run main class with
+-Djava.library.path=target/natives

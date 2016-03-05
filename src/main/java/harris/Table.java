@@ -1,27 +1,11 @@
 package harris;
 
 import org.newdawn.slick.Color;
-import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.*;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.TrueTypeFont;
 
-import java.awt.*;
-
-
-/**
- * Created by owner on 1/18/16.
- */
 public class Table {
     private static final Color green = new Color(0, 102, 0);
-    private static final TrueTypeFont scoreFont;
-    private static final TrueTypeFont bottomFont;
-
-    static {
-        Font f = new Font("Verdana", Font.PLAIN, 76);
-        scoreFont = new TrueTypeFont(f, true);
-        f = new Font("Verdana", Font.PLAIN, 36);
-        bottomFont = new TrueTypeFont(f, true);
-    }
 
     Paddle paddle1 = new Paddle(true);
     Paddle paddle2 = new Paddle(false);
@@ -40,12 +24,13 @@ public class Table {
         g.setColor(green);
         g.fillRect(0, 0, game.getWidth(), game.getHeight());
         String score = score1 + " - " + score2;
-        int w = scoreFont.getWidth(score);
-        scoreFont.drawString(game.getWidth() / 2 - w / 2, 0, score, Color.black);
+        int w = g.getFont().getWidth(score);
+        g.getFont().drawString(game.getWidth() / 2 - w / 2, 0, score, Color.black);
+
         String bottom = "Volley: " + ball.hits + "  Longest: " + longestVolley;
-        w = bottomFont.getWidth(bottom);
-        int h = bottomFont.getLineHeight();
-        bottomFont.drawString(game.getWidth() / 2 - w / 2, game.getHeight() - h, bottom, Color.black);
+        w = g.getFont().getWidth(bottom);
+        int h = g.getFont().getLineHeight();
+        g.getFont().drawString(game.getWidth() / 2 - w / 2, game.getHeight() - h, bottom, Color.black);
         paddle1.render(game, g);
         paddle2.render(game, g);
         ball.render(game, g);

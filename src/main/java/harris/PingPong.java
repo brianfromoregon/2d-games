@@ -1,14 +1,11 @@
 package harris;
 
 import org.newdawn.slick.*;
-import org.newdawn.slick.util.InputAdapter;
-
-import java.awt.event.KeyEvent;
 
 public class PingPong extends BasicGame {
 
-    private static final int WIDTH = 1200;
-    private static final int HEIGHT = 700;
+    private static final int WIDTH = 1280;
+    private static final int HEIGHT = 720;
 
     Table table;
 

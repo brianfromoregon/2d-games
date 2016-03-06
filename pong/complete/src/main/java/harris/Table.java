@@ -21,19 +21,31 @@ public class Table {
     }
 
     public void render(GameContainer game, Graphics g) {
-        g.setColor(green);
-        g.fillRect(0, 0, game.getWidth(), game.getHeight());
-        String score = score1 + " - " + score2;
-        int w = g.getFont().getWidth(score);
-        g.getFont().drawString(game.getWidth() / 2 - w / 2, 0, score, Color.black);
+        drawBackground(game, g);
+        drawScore(game, g);
+        drawStats(game, g);
 
-        String bottom = "Volley: " + ball.hits + "  Longest: " + longestVolley;
-        w = g.getFont().getWidth(bottom);
-        int h = g.getFont().getLineHeight();
-        g.getFont().drawString(game.getWidth() / 2 - w / 2, game.getHeight() - h, bottom, Color.black);
         paddle1.render(game, g);
         paddle2.render(game, g);
         ball.render(game, g);
+    }
+
+    private void drawStats(GameContainer game, Graphics g) {
+        String bottom = "Volley: " + ball.hits + "  Longest: " + longestVolley;
+        int w = g.getFont().getWidth(bottom);
+        int h = g.getFont().getLineHeight();
+        g.getFont().drawString(game.getWidth() / 2 - w / 2, game.getHeight() - h, bottom, Color.black);
+    }
+
+    private void drawScore(GameContainer game, Graphics g) {
+        String score = score1 + " - " + score2;
+        int w = g.getFont().getWidth(score);
+        g.getFont().drawString(game.getWidth() / 2 - w / 2, 0, score, Color.black);
+    }
+
+    private void drawBackground(GameContainer game, Graphics g) {
+        g.setColor(green);
+        g.fillRect(0, 0, game.getWidth(), game.getHeight());
     }
 
     public void update(GameContainer game, int delta) {
@@ -41,6 +53,10 @@ public class Table {
         paddle2.update(game, delta);
         ball.update(game, delta);
 
+        checkBallOnTable(game);
+    }
+
+    private void checkBallOnTable(GameContainer game) {
         if (ball.shape.getMaxX() < 0 || ball.shape.getMinX() > game.getWidth()) {
             if (ball.shape.getMaxX() < 0) {
                 score2++;

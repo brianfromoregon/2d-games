@@ -6,10 +6,6 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Rectangle;
 
-
-/**
- * Created by owner on 1/18/16.
- */
 public class Paddle {
     private static final Color red = new Color(150, 0, 0);
     private static final float speed = 0.5f;
@@ -39,6 +35,26 @@ public class Paddle {
     }
 
     public void update(GameContainer game, int delta) {
+        movePaddle(delta);
+        checkPaddleOnTable(game);
+    }
+
+    private void checkPaddleOnTable(GameContainer game) {
+        if (shape.getY() < 0) {
+            shape.setY(0);
+        }
+        if (shape.getY() > game.getHeight() - shape.getHeight()) {
+            shape.setY(game.getHeight() - shape.getHeight());
+        }
+        if (shape.getX() < 0) {
+            shape.setX(0);
+        }
+        if (shape.getMaxX() > game.getWidth()) {
+            shape.setX(game.getWidth() - shape.getWidth());
+        }
+    }
+
+    private void movePaddle(int delta) {
         if (isPlayer1 && Keyboard.isKeyDown(Keyboard.KEY_W)
                 || !isPlayer1 && Keyboard.isKeyDown(Keyboard.KEY_UP)) {
             shape.setY(shape.getY() - speed * delta);
@@ -54,18 +70,6 @@ public class Paddle {
         if (isPlayer1 && Keyboard.isKeyDown(Keyboard.KEY_D)
                 || !isPlayer1 && Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
             shape.setX(shape.getX() + speed * delta);
-        }
-        if (shape.getY() < 0) {
-            shape.setY(0);
-        }
-        if (shape.getY() > game.getHeight() - shape.getHeight()) {
-            shape.setY(game.getHeight() - shape.getHeight());
-        }
-        if (shape.getX() < 0) {
-            shape.setX(0);
-        }
-        if (shape.getMaxX() > game.getWidth()) {
-            shape.setX(game.getWidth() - shape.getWidth());
         }
     }
 }

@@ -2,17 +2,21 @@ package harris;
 
 import org.newdawn.slick.*;
 
-public class PingPong extends BasicGame {
+/**
+ * When running this class in IDE, add VM option: -Djava.library.path=target/natives
+ */
+public class PingPongGame extends BasicGame {
 
     private static final int WIDTH = 1280;
     private static final int HEIGHT = 720;
 
     Table table;
 
-    public PingPong() {
+    public PingPongGame() {
         super("Ping Pong");
     }
 
+    @Override
     public void render(GameContainer container, Graphics g) throws SlickException {
         table.render(container, g);
     }
@@ -29,7 +33,7 @@ public class PingPong extends BasicGame {
     }
     
     public static void main(String[] args) throws SlickException {
-        AppGameContainer app = new AppGameContainer(new PingPong());
+        AppGameContainer app = new AppGameContainer(new PingPongGame());
         app.setDisplayMode(WIDTH, HEIGHT, false);
         app.start();
     }

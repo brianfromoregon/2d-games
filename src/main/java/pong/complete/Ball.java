@@ -1,4 +1,4 @@
-package harris;
+package pong.complete;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;

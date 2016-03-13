@@ -20,4 +20,5 @@
 * Exception in thread "main" java.lang.UnsatisfiedLinkError: no lwjgl in java.library.path
 
  Did you forget to add this JVM option: -Djava.library.path=target/natives
+ 
  Did you forget to run maven's compile target?

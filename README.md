@@ -17,7 +17,7 @@
 #### FAQ
 
 
-* Exception in thread "main" java.lang.UnsatisfiedLinkError: no lwjgl in java.library.path
+* When trying to run the main class I see this: Exception in thread "main" java.lang.UnsatisfiedLinkError: no lwjgl in java.library.path
 
  Did you forget to add this JVM option: -Djava.library.path=target/natives
  

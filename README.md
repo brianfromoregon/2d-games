@@ -7,11 +7,12 @@
  * But [Eclipse](http://www.eclipse.org/downloads/) works too, pick "Eclipse IDE for Java Developers"
 1. Download and install [Git](https://git-scm.com/downloads)
 1. Git clone this repo, the URL is _https://github.com/brianfromoregon/2d-games.git_
-1. TODO Open project in IDE
-1. TODO Run a maven compile 
+1. (TODO explain better) Import maven project into IDE
+1. (TODO explain better) Run the maven compile target one time to prepare native dependencies
 
 #### Verify
-1. TODO
+1. (TODO explain better) Run main class pong.complete.PingPongGame and a pong game should pop up.
+ * Read its javadoc for instruction on required JVM options.
 
 #### FAQ
 

@@ -1,4 +1,4 @@
-package pong.complete;
+package pong;
 
 import org.newdawn.slick.*;
 

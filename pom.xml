@@ -10,7 +10,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <main.class>pong.complete.PingPongGame</main.class>
+        <main.class>pong.PingPongGame</main.class>
     </properties>
 
     <dependencies>
@@ -18,6 +18,11 @@
             <groupId>org.slick2d</groupId>
             <artifactId>slick2d-core</artifactId>
             <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>19.0</version>
         </dependency>
     </dependencies>
 

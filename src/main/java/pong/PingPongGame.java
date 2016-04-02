@@ -2,11 +2,11 @@ package pong;
 
 import org.newdawn.slick.*;
 
-public class PingPongGame extends BasicGame {
+class PingPongGame extends BasicGame {
 
     Table table;
 
-    public PingPongGame() {
+    PingPongGame() {
         super("Ping Pong");
     }
 
@@ -26,7 +26,7 @@ public class PingPongGame extends BasicGame {
         table.update(container, delta);
     }
 
-    public Factory createFactory(GameContainer game) {
+    Factory createFactory(GameContainer game) {
         return new Factory(game);
     }
 }

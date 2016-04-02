@@ -14,12 +14,12 @@ public class Ball {
     Circle shape;
     int hits;
 
-    public Ball(Paddle paddle1, Paddle paddle2) {
+    Ball(Paddle paddle1, Paddle paddle2) {
         this.paddle1 = paddle1;
         this.paddle2 = paddle2;
     }
 
-    public void init(GameContainer game) {
+    void init(GameContainer game) {
         shape = new Circle(game.getWidth() / 2, game.getHeight() / 2, ballRadius());
         boolean left = random.nextBoolean();
         boolean up = random.nextBoolean();
@@ -29,12 +29,12 @@ public class Ball {
         if (up) ySpeed *= -1;
     }
 
-    public void render(GameContainer game, Graphics g) {
+    void render(GameContainer game, Graphics g) {
         g.setColor(Color.white);
         g.fillOval(shape.getX(), shape.getY(), shape.getRadius() * 2, shape.getRadius() * 2);
     }
 
-    public void update(GameContainer game, int delta) {
+    void update(GameContainer game, int delta) {
         moveBall(delta);
         checkBallHitPaddle();
         checkBallOnTable(game);
@@ -64,15 +64,15 @@ public class Ball {
         shape.setY(shape.getY() + delta * ySpeed);
     }
 
-    public float startingXSpeed() {
+    float startingXSpeed() {
         return 0.25f;
     }
 
-    public float startingYSpeed() {
+    float startingYSpeed() {
         return 0.25f;
     }
 
-    public float ballRadius() {
+    float ballRadius() {
         return 10;
     }
 }

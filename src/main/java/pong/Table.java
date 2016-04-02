@@ -4,7 +4,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.*;
 import org.newdawn.slick.Graphics;
 
-public class Table {
+class Table {
     private static final Color green = new Color(0, 102, 0);
 
     Factory factory;
@@ -14,14 +14,14 @@ public class Table {
     int score1, score2;
     int longestVolley;
 
-    public void init(GameContainer game, Factory factory) {
+    void init(GameContainer game, Factory factory) {
         this.factory = factory;
-        paddle1 = factory.createPaddle(true);
-        paddle2 = factory.createPaddle(false);
+        paddle1 = factory.createLeftPaddle();
+        paddle2 = factory.createRightPaddle();
         ball = factory.createBall(paddle1, paddle2);
     }
 
-    public void render(GameContainer game, Graphics g) {
+    void render(GameContainer game, Graphics g) {
         drawBackground(game, g);
         drawScore(game, g);
         drawStats(game, g);
@@ -49,7 +49,7 @@ public class Table {
         g.fillRect(0, 0, game.getWidth(), game.getHeight());
     }
 
-    public void update(GameContainer game, int delta) {
+    void update(GameContainer game, int delta) {
         paddle1.update(game, delta);
         paddle2.update(game, delta);
         ball.update(game, delta);

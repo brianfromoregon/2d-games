@@ -6,15 +6,15 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-public class ObamaBall extends Ball {
+class ObamaBall extends Ball {
     Image img;
 
-    public ObamaBall(Paddle paddle1, Paddle paddle2) {
+    ObamaBall(Paddle paddle1, Paddle paddle2) {
         super(paddle1, paddle2);
     }
 
     @Override
-    public void init(GameContainer game) {
+    void init(GameContainer game) {
         super.init(game);
 
         try {
@@ -25,12 +25,12 @@ public class ObamaBall extends Ball {
     }
 
     @Override
-    public void render(GameContainer game, Graphics g) {
+    void render(GameContainer game, Graphics g) {
         img.draw(shape.getX(), shape.getY(), shape.getRadius() * 2, shape.getRadius() * 2);
     }
 
     @Override
-    public float ballRadius() {
+    float ballRadius() {
         return 100;
     }
 }

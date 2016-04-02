@@ -1,43 +1,43 @@
 package pong;
 
-import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Rectangle;
 
-public class Paddle {
-    private static final Color red = new Color(150, 0, 0);
-    private static final float speed = 0.5f;
-
-    final boolean isPlayer1;
+abstract class Paddle {
     Rectangle shape;
 
-    public Paddle(boolean isPlayer1) {
-        this.isPlayer1 = isPlayer1;
+    void init(GameContainer game) {
+        int x = getStartingX(game);
+        shape = new Rectangle(x, game.getHeight() / 2 - getHeight() / 2, getWidth(), getHeight());
     }
 
-    public void init(GameContainer game) {
-        int width = 20;
-        int height = 100;
-        int x;
-        if (isPlayer1) {
-            x = 0;
-        } else {
-            x = game.getWidth() - width;
-        }
-        shape = new Rectangle(x, game.getHeight() / 2 - height / 2, width, height);
-    }
-
-    public void render(GameContainer game, Graphics g) {
-        g.setColor(isPlayer1 ? Color.black : red);
+    void render(GameContainer game, Graphics g) {
+        g.setColor(getColor());
         g.fillRect(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight());
     }
 
-    public void update(GameContainer game, int delta) {
+    void update(GameContainer game, int delta) {
         movePaddle(delta);
         checkPaddleOnTable(game);
     }
+
+    int getWidth() {
+        return 20;
+    }
+
+    int getHeight() {
+        return 100;
+    }
+
+    float getSpeed() {
+        return 0.5f;
+    }
+
+    abstract int getStartingX(GameContainer game);
+    abstract Color getColor();
+    abstract void movePaddle(int delta);
 
     private void checkPaddleOnTable(GameContainer game) {
         if (shape.getY() < 0) {
@@ -51,25 +51,6 @@ public class Paddle {
         }
         if (shape.getMaxX() > game.getWidth()) {
             shape.setX(game.getWidth() - shape.getWidth());
-        }
-    }
-
-    private void movePaddle(int delta) {
-        if (isPlayer1 && Keyboard.isKeyDown(Keyboard.KEY_W)
-                || !isPlayer1 && Keyboard.isKeyDown(Keyboard.KEY_UP)) {
-            shape.setY(shape.getY() - speed * delta);
-        }
-        if (isPlayer1 && Keyboard.isKeyDown(Keyboard.KEY_S)
-                || !isPlayer1 && Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
-            shape.setY(shape.getY() + speed * delta);
-        }
-        if (isPlayer1 && Keyboard.isKeyDown(Keyboard.KEY_A)
-                || !isPlayer1 && Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
-            shape.setX(shape.getX() - speed * delta);
-        }
-        if (isPlayer1 && Keyboard.isKeyDown(Keyboard.KEY_D)
-                || !isPlayer1 && Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
-            shape.setX(shape.getX() + speed * delta);
         }
     }
 }

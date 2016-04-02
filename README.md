@@ -11,7 +11,7 @@
 1. (TODO explain better) Run the maven compile target one time to prepare native dependencies
 
 #### Verify
-1. (TODO explain better) Run main class pong.complete.PingPongGame and a pong game should pop up.
+1. (TODO explain better) Run main class pong.SlowBallGame and a pong game should pop up.
  * Read its javadoc for instruction on required JVM options.
 
 #### FAQ

@@ -2,13 +2,7 @@ package pong;
 
 import org.newdawn.slick.*;
 
-/**
- * When running this class in IDE, add VM option: -Djava.library.path=target/natives
- */
 public class PingPongGame extends BasicGame {
-
-    private static final int WIDTH = 1280;
-    private static final int HEIGHT = 720;
 
     Table table;
 
@@ -24,18 +18,15 @@ public class PingPongGame extends BasicGame {
     @Override
     public void init(GameContainer game) throws SlickException {
         table = new Table();
-        table.init(game);
+        table.init(game, createFactory(game));
     }
 
     @Override
     public void update(GameContainer container, int delta) throws SlickException {
         table.update(container, delta);
     }
-    
-    public static void main(String[] args) throws SlickException {
-        AppGameContainer app = new AppGameContainer(new PingPongGame());
-        app.setDisplayMode(WIDTH, HEIGHT, false);
-        app.start();
-    }
 
+    public Factory createFactory(GameContainer game) {
+        return new Factory(game);
+    }
 }

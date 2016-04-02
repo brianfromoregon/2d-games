@@ -10,7 +10,7 @@ import java.util.Random;
 public class Ball {
     private final Paddle paddle1, paddle2;
     private final Random random = new Random();
-    private float dx, dy;
+    private float xSpeed, ySpeed;
     Circle shape;
     int hits;
 
@@ -23,10 +23,10 @@ public class Ball {
         shape = new Circle(game.getWidth() / 2, game.getHeight() / 2, 10);
         boolean left = random.nextBoolean();
         boolean up = random.nextBoolean();
-        dx = .25f;
-        if (left) dx *= -1;
-        dy = .25f;
-        if (up) dy *= -1;
+        xSpeed = startingXSpeed();
+        if (left) xSpeed *= -1;
+        ySpeed = startingYSpeed();
+        if (up) ySpeed *= -1;
     }
 
     public void render(GameContainer game, Graphics g) {
@@ -43,25 +43,32 @@ public class Ball {
     private void checkBallOnTable(GameContainer game) {
         if (shape.getMinY() < 0) {
             shape.setY(0);
-            dy = -dy;
+            ySpeed = -ySpeed;
         }
         if (shape.getMaxY() > game.getHeight()) {
             shape.setY(game.getHeight() - shape.getRadius() * 2);
-            dy = -dy;
+            ySpeed = -ySpeed;
         }
     }
 
     private void checkBallHitPaddle() {
-        if (dx < 0 && paddle1.shape.intersects(shape)
-                || dx > 0 && paddle2.shape.intersects(shape)) {
-            dx *= -1.2f;
+        if (xSpeed < 0 && paddle1.shape.intersects(shape)
+                || xSpeed > 0 && paddle2.shape.intersects(shape)) {
+            xSpeed *= -1.2f;
             hits++;
         }
     }
 
     private void moveBall(int delta) {
-        shape.setX(shape.getX() + delta * dx);
-        shape.setY(shape.getY() + delta * dy);
+        shape.setX(shape.getX() + delta * xSpeed);
+        shape.setY(shape.getY() + delta * ySpeed);
     }
 
+    public float startingXSpeed() {
+        return 0.25f;
+    }
+
+    public float startingYSpeed() {
+        return 0.25f;
+    }
 }

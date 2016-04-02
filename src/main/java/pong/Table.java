@@ -7,17 +7,18 @@ import org.newdawn.slick.Graphics;
 public class Table {
     private static final Color green = new Color(0, 102, 0);
 
-    Paddle paddle1 = new Paddle(true);
-    Paddle paddle2 = new Paddle(false);
+    Factory factory;
+    Paddle paddle1;
+    Paddle paddle2;
     Ball ball;
     int score1, score2;
     int longestVolley;
 
-    public void init(GameContainer game) {
-        paddle1.init(game);
-        paddle2.init(game);
-        ball = new Ball(paddle1, paddle2);
-        ball.init(game);
+    public void init(GameContainer game, Factory factory) {
+        this.factory = factory;
+        paddle1 = factory.createPaddle(true);
+        paddle2 = factory.createPaddle(false);
+        ball = factory.createBall(paddle1, paddle2);
     }
 
     public void render(GameContainer game, Graphics g) {
@@ -66,8 +67,7 @@ public class Table {
             if (ball.hits > longestVolley) {
                 longestVolley = ball.hits;
             }
-            ball = new Ball(paddle1, paddle2);
-            ball.init(game);
+            ball = factory.createBall(paddle1, paddle2);
         }
     }
 }

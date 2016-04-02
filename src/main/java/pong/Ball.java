@@ -20,7 +20,7 @@ public class Ball {
     }
 
     public void init(GameContainer game) {
-        shape = new Circle(game.getWidth() / 2, game.getHeight() / 2, 10);
+        shape = new Circle(game.getWidth() / 2, game.getHeight() / 2, ballRadius());
         boolean left = random.nextBoolean();
         boolean up = random.nextBoolean();
         xSpeed = startingXSpeed();
@@ -70,5 +70,9 @@ public class Ball {
 
     public float startingYSpeed() {
         return 0.25f;
+    }
+
+    public float ballRadius() {
+        return 10;
     }
 }
